@@ -54,22 +54,21 @@ Create a `.env` file in the `backend/` directory:
 
 ````env
 # --- Server ---
-PORT=3000                        # API server port
+PORT=3000                        	# API server port
 
 # --- MQTT Broker ---
-MQTT_BROKER=mqtt://localhost:1883  # Broker URL (EMQX, Mosquitto, HiveMQ)
-MQTT_TOPIC=cmas/indicator          # Topic for component status
-MQTT_QOS=1                         # QoS level: 0, 1, or 2
-
----
+MQTT_BROKER=mqtt://localhost:1883  	# Broker URL (EMQX, Mosquitto, HiveMQ)
+MQTT_TOPIC=cmas/indicator          	# Topic for component status
+MQTT_QOS=1                         	# QoS level: 0, 1, or 2
+````
 
 ### 4. Run the Application
 
-#### Start Backend
-
 ```bash
+# Start Backend
 cd backend
 npm start
+
 # or for development:
 npm run dev
 ````
@@ -226,7 +225,7 @@ cmas/
 │   ├── app.js           # Main server entry point
 │   ├── routes/
 │   │   ├── index.js     # Route aggregator
-│   │   ├── callMiss.js  # Alert endpoint
+│   │   ├── alerts.js  # Alert endpoint
 │   │   └── device.js    # Device & monitoring endpoints
 │   ├── mqtt/
 │   │   ├── config.js    # MQTT connection config
