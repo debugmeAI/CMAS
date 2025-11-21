@@ -32,8 +32,8 @@ router.get("/status", (req, res) => {
 	const uptime = Math.floor((Date.now() - stats.startTime) / 1000);
 
 	res.json({
+		timestamp: new Date().toLocaleString("en-GB", { timeZone: "Asia/Jakarta" }),
 		service: "cmas-status-api",
-		version: "1.0.0",
 		uptime: formatUptime(uptime),
 		mqtt: {
 			connected: mqttConnected,
@@ -47,7 +47,6 @@ router.get("/status", (req, res) => {
 			successRate: calculateSuccessRate(),
 			lastPublish: stats.lastPublishTime,
 		},
-		timestamp: new Date().toLocaleString("en-GB", { timeZone: "Asia/Jakarta" }),
 	});
 });
 
@@ -91,4 +90,4 @@ function calculateSuccessRate() {
 	return `${((stats.successfulPublish / total) * 100).toFixed(2)}%`;
 }
 
-module.exports = { router, stats };
+module.exports = { router, stats, deviceConfig };

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { publishIndicator } = require("../mqtt/publisher");
 const { getConnectionStatus } = require("../mqtt/config");
-const { stats } = require("./device");
+const { stats, deviceConfig } = require("./device");
 
 router.post("/", async (req, res) => {
 	const { line, status } = req.body;
@@ -19,6 +19,15 @@ router.post("/", async (req, res) => {
 		return res.status(400).json({
 			success: false,
 			error: "Wrong status",
+		});
+	}
+
+	const allLines = Object.values(deviceConfig).flat();
+	if (!allLines.includes(line.trim())) {
+		return res.status(400).json({
+			success: false,
+			error: "Line not registered in any device",
+			available_lines: allLines,
 		});
 	}
 
