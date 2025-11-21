@@ -41,8 +41,6 @@ cd cmas
 
 ### 2. Install Dependencies
 
-#### Backend
-
 ```bash
 cd backend
 npm install
